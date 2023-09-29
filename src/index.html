@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script src="main.js" type="module"></script>
     <header>
       <h1>GAME OF THRONES</h1>
     </header>
@@ -15,22 +14,25 @@
     </main>
 
     <div id="root" class="cards">
-        <!-- <li class="card1front">
-          <img src="https://thronesapi.com/assets/images/jon-snow.jpg">
-          <h2>JON SNOW El rey del norte</h2>
-        </li>
-        <li class="card1back">
-          <dl itemscope itemtype="got">
-            <dt>Name:</dt>
-            <dd itemprop="name">Jon Snow</dd>
-            <dt>House:</dt>
-            <dd itemprop="house">Stark</dd>
-            <dt>Title</dt>
-            <dd itemprop="title">"King of the North"</dd>
-          </dl>
-        </li> -->
+    </div>
+    
+    <div class="modal">
+      <div class="modal-content" itemscope itemtype="https://schema.org/Person">
+        <span class="close">&times;</span>
+        <p>
+          <img itemprop="imageUrl"/>
+          <dl itemscope itemtype="character">
+          <dt>Nombre:</dt><dd itemprop="fullName"></dd>
+          <dt>Casa:</dt><dd itemprop="family"></dd>
+          <dt>Título</dt><dd itemprop="title"></dd>
+          <dt>Año de nacimiento:</dt><dd itemprop="born"></dd>
+          <dt>Año de muerte:</dt><dd itemprop="death"></dd>
+        </dl>
+      </p>
+      </div>
     </div>
 
+    <script src="main.js" type="module"></script>
   </body>
   <footer>Creado por Chris y Carol</footer>
 </html>

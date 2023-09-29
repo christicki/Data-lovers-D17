@@ -4,7 +4,7 @@ export const renderItems = (dataGot) => {
   const ul = document.createElement("ul");
   ul.setAttribute("id", "cards");
   dataGot.forEach((element) => {
-  
+    
     const newLi = document.createElement("li");
     newLi.setAttribute("class", "container");
   
@@ -15,7 +15,11 @@ export const renderItems = (dataGot) => {
     const characters = document.createElement("p");
     characters.setAttribute("class", "characters");
     characters.innerHTML = element.fullName;
-  
+    newLi.addEventListener("click", () => {
+      localStorage.setItem("idCharacter", JSON.stringify(element));
+      console.log(element.id);
+    }) 
+
     newLi.appendChild(characters);
     ul.appendChild(newLi);
 
