@@ -18,16 +18,25 @@ liContainerAll.forEach((liContainer) => {
     const modalContent = document.querySelector(".modal-content");
     modalContent.innerHTML = "";
 
-  const character = JSON.parse(localStorage.getItem("idCharacter")); //estudiar -> para convertirlo a objeto o array// 
-  const X = `
-    Nombre: ${character.firstName} <br>
-    Apellido: ${character.lastName} <br>
-    Casa: ${character.family} <br>
-    Año de nacimiento: ${character.born} <br>
-    Año de muerte: ${character.death} <br>
-    Título: "${character.title}" <br>
+    const character = JSON.parse(localStorage.getItem("idCharacter")); //estudiar -> para convertirlo a objeto o array//
+
+    // Crear y agregar la imagen al contenido del modal
+    const imageElement = document.createElement("img");
+    imageElement.src = character.imageUrl;
+    imageElement.classList.add("modal-image"); // Agregar la clase "modal-image"
+    modalContent.appendChild(imageElement);
+
+    const X = `
+    <ul>
+      <li>Nombre: <strong>${character.firstName}</strong></li>
+      <li>Apellido:</strong> <strong>${character.lastName}</strong></li>
+      <li>Casa:</strong> <strong>${character.family}</strong></li>
+      <li>Año de nacimiento:</strong> <strong>${character.born}</strong></li>
+      <li>Año de muerte:</strong> <strong>${character.death}</strong></li>
+      <li>Título: <strong>"${character.title}"</strong></li>
+    </ul>
     `;
-  modalContent.innerHTML = X;
+    modalContent.innerHTML += X;
   });
 });
 
@@ -44,6 +53,6 @@ modal.addEventListener("click", function (event) {
 });
 
 //EVENTOS
-selectFilter.addEventListener('change', ()=> {
-    const result = filterData(dataGot, 'family')
-})
+selectFilter.addEventListener("change", () => {
+  const result = filterData(dataGot, "family");
+});

@@ -2,14 +2,13 @@
 // al menos debe tener uno que se llame "data"
 
 export const filterData = (data, filterBy, value) => {
-const resultFilter = data.filter((obj)=>{
-    return obj.filterBy === value
-}) 
+  const resultFilter = data.filter((obj) => {
+    return obj.filterBy === value;
+  });
 
-return resultFilter
-
+  return resultFilter;
 };
 
 export const sortData = (data, sortBy, sortOrder) => {
-    return 1
+  return 1;
 };
