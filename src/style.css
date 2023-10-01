@@ -29,8 +29,23 @@ h1 {
   text-shadow: 1px 1px 3px rgba(33, 33, 33, 0.5); /* Sombra clara */
   background-color: transparent;
 }
+.menu {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+}
 
-#menu {
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+#myMenu {
   padding: 6px;
   width: 100%;
   background-color: rgba(217, 217, 217, 1);

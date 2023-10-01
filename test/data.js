@@ -3,11 +3,15 @@
 
 export const filterData = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
-    return obj.filterBy === value;
+    return obj[filterBy] === value;
   });
 
-  return resultFilter;
+  return resultFilter; 
+  
 };
+
+/* const filteredData = filterData(data, "family");
+console.log(filteredData); */
 
 export const sortData = (data, sortBy, sortOrder) => {
   return 1;

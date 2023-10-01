@@ -1,4 +1,4 @@
-import { example } from "./dataFunctions.js";
+import { example } from "./dataFunctions.js"
 import { renderItems } from "./view.js";
 
 import data from "./data/got/got.js";
@@ -52,7 +52,23 @@ modal.addEventListener("click", function (event) {
   }
 });
 
-//EVENTOS
+/* //EVENTOS
+const selectFilter = document.getElementById("filterHouses");
 selectFilter.addEventListener("change", () => {
   const result = filterData(dataGot, "family");
+});
+ */
+
+// Obtén una referencia al elemento <select> por su ID
+const filterHousesSelect = document.getElementById("filterHouses");
+// Agrega un evento "change" al elemento <select>
+filterHousesSelect.addEventListener("change", function() {
+  // Obtiene el valor seleccionado
+  const selectedHouse = filterHousesSelect.value;
+
+  // Llama a tu función de filtrado (reemplaza con tu lógica)
+  const filteredData = filterData(dataGot, "family", selectedHouse);
+
+  // Realiza alguna acción con los datos filtrados (puedes actualizar el DOM aquí)
+  console.log(filteredData), "family";
 });
