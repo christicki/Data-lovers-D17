@@ -1,5 +1,3 @@
-// estas funciones son de ejemplo
-
 export const renderItems = (dataGot) => {
   const ul = document.createElement("ul");
   ul.setAttribute("id", "cards");
@@ -40,4 +38,4 @@ function myFunction() {
   } else {
     menu.classList.remove("sticky");
   }
-}
+};

@@ -3,14 +3,20 @@
 
 export const filterData = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
-    const normalizedValue = value.toLowerCase();
-    const normalizedDataValue = obj[filterBy].toLowerCase();
+    return obj[filterBy].includes(value);
 
-    return normalizedDataValue.includes(normalizedValue);
-  
-    /*return obj[filterBy] === value;*/
   }); 
   return resultFilter;  
+};
+
+export const filterDataFamily = (data, filterBy, value) => {
+  const resultFilter = data.filter((obj) => {
+    // Utiliza toLowerCase() para hacer la búsqueda insensible a mayúsculas/minúsculas
+    const fieldValue = obj[filterBy].toLowerCase();
+    const filterValue = value.toLowerCase();
+    return fieldValue.includes(filterValue);
+  });
+  return resultFilter;
 };
 
   export const sortData = (data, sortBy, sortOrder) => {

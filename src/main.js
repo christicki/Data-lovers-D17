@@ -1,4 +1,3 @@
-import { example } from "./dataFunctions.js";
 import { renderItems } from "./view.js";
 import data from "./data/got/got.js";
 import { filterData } from "./dataFunctions.js";
@@ -8,11 +7,18 @@ const root = document.querySelector("#root");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close");
 const filterHousesSelect = document.getElementById("filterHouses");
+const selectedValue = filterHousesSelect.value;
+const selectedAltValue = filterHousesSelect.options[filterHousesSelect.selectedIndex].getAttribute("data-alt-value");
+
+console.log("Valor seleccionado:", selectedValue);
+console.log("Valor alternativo:", selectedAltValue);
+
 
 // Función para renderizar todos los personajes
 const renderAllCharacters = () => {
   root.innerHTML = "";
   root.appendChild(renderItems(dataGot));
+  setupModalEventListeners(); //AGREGAMOS ESTO
 };
 
 // Función para filtrar y renderizar los personajes por familia
@@ -23,6 +29,7 @@ const updateCharactersByFamily = (family) => {
     const filteredData = filterData(dataGot, "family", family);
     root.innerHTML = "";
     root.appendChild(renderItems(filteredData));
+    setupModalEventListeners();//AGREGAMOS ESTO
   }
 };
 
@@ -40,8 +47,9 @@ filterHousesSelect.addEventListener("change", function () {
   }
 });
 
-// Evento para mostrar el modal al hacer clic en las tarjetas de personajes
-const liContainerAll = root.querySelectorAll(".container");
+// Función para mostrar el modal al hacer clic en las tarjetas de personajes //AGREGAMOS ESTO + linea 45
+function setupModalEventListeners() {
+  const liContainerAll = root.querySelectorAll(".container");
 
 liContainerAll.forEach((liContainer) => {
   liContainer.addEventListener("click", function (event) {
@@ -57,19 +65,32 @@ liContainerAll.forEach((liContainer) => {
     imageElement.classList.add("modal-image");
     modalContent.appendChild(imageElement);
 
-    const characterInfo = `
-      <ul>
-        <li>Nombre: <strong>${character.firstName}</strong></li>
-        <li>Apellido: <strong>${character.lastName}</strong></li>
-        <li>Casa: <strong>${character.family}</strong></li>
-        <li>Año de nacimiento: <strong>${character.born}</strong></li>
-        <li>Año de muerte: <strong>${character.death}</strong></li>
-        <li>Título: <strong>${character.title}</strong></li>
-      </ul>
-    `;
-    modalContent.innerHTML += characterInfo;
+    // Crear un elemento div con itemscope y itemtype para representar una persona
+    const personElement = document.createElement("div");
+    personElement.setAttribute("itemscope", "");
+    personElement.setAttribute("itemtype", "https://schema.org/Person");
+
+    // Agregar las propiedades de la persona utilizando elementos con itemprop
+    personElement.innerHTML = `
+      <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
+      <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
+      <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
+      <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
+      <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
+`;
+
+    modalContent.appendChild(personElement);
   });
 });
+}
+
+// Evento para mostrar el modal al hacer clic en las tarjetas de personajes
+/* liContainerAll.addEventListener("click", function (event) {
+  const liContainer = event.target.closest(".container");
+  if (liContainer) {
+    showModal(event);
+  }
+}); */
 
 // Cerrar el modal al hacer clic en el botón de cierre
 closeModalBtn.addEventListener("click", function () {
