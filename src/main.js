@@ -1,16 +1,47 @@
-import { example } from "./dataFunctions.js"
+import { example } from "./dataFunctions.js";
 import { renderItems } from "./view.js";
-
 import data from "./data/got/got.js";
+import { filterData } from "./dataFunctions.js";
 
 const dataGot = data.got;
-
 const root = document.querySelector("#root");
-
-root.appendChild(renderItems(dataGot));
-const liContainerAll = root.querySelectorAll(".container");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close");
+const filterHousesSelect = document.getElementById("filterHouses");
+
+// Función para renderizar todos los personajes
+const renderAllCharacters = () => {
+  root.innerHTML = "";
+  root.appendChild(renderItems(dataGot));
+};
+
+// Función para filtrar y renderizar los personajes por familia
+const updateCharactersByFamily = (family) => {
+  if (family === "") {
+    renderAllCharacters();
+  } else {
+    const filteredData = filterData(dataGot, "family", family);
+    root.innerHTML = "";
+    root.appendChild(renderItems(filteredData));
+  }
+};
+
+// Llama a la función para renderizar todos los personajes al cargar la página
+renderAllCharacters();
+
+// Función para manejar el evento de cambio en el selector de casas
+filterHousesSelect.addEventListener("change", function () {
+  const selectedHouse = filterHousesSelect.value;
+
+  if (selectedHouse === "Todos") {
+    renderAllCharacters();
+  } else {
+    updateCharactersByFamily(selectedHouse);
+  }
+});
+
+// Evento para mostrar el modal al hacer clic en las tarjetas de personajes
+const liContainerAll = root.querySelectorAll(".container");
 
 liContainerAll.forEach((liContainer) => {
   liContainer.addEventListener("click", function (event) {
@@ -18,57 +49,36 @@ liContainerAll.forEach((liContainer) => {
     const modalContent = document.querySelector(".modal-content");
     modalContent.innerHTML = "";
 
-    const character = JSON.parse(localStorage.getItem("idCharacter")); //estudiar -> para convertirlo a objeto o array//
+    const character = JSON.parse(localStorage.getItem("idCharacter"));
 
     // Crear y agregar la imagen al contenido del modal
     const imageElement = document.createElement("img");
     imageElement.src = character.imageUrl;
-    imageElement.classList.add("modal-image"); // Agregar la clase "modal-image"
+    imageElement.classList.add("modal-image");
     modalContent.appendChild(imageElement);
 
-    const X = `
-    <ul>
-      <li>Nombre: <strong>${character.firstName}</strong></li>
-      <li>Apellido:</strong> <strong>${character.lastName}</strong></li>
-      <li>Casa:</strong> <strong>${character.family}</strong></li>
-      <li>Año de nacimiento:</strong> <strong>${character.born}</strong></li>
-      <li>Año de muerte:</strong> <strong>${character.death}</strong></li>
-      <li>Título: <strong>"${character.title}"</strong></li>
-    </ul>
+    const characterInfo = `
+      <ul>
+        <li>Nombre: <strong>${character.firstName}</strong></li>
+        <li>Apellido: <strong>${character.lastName}</strong></li>
+        <li>Casa: <strong>${character.family}</strong></li>
+        <li>Año de nacimiento: <strong>${character.born}</strong></li>
+        <li>Año de muerte: <strong>${character.death}</strong></li>
+        <li>Título: <strong>${character.title}</strong></li>
+      </ul>
     `;
-    modalContent.innerHTML += X;
+    modalContent.innerHTML += characterInfo;
   });
 });
 
-//Cerrar el modal cuando se hace click en el botón de cierre
+// Cerrar el modal al hacer clic en el botón de cierre
 closeModalBtn.addEventListener("click", function () {
   modal.style.display = "none";
 });
 
-// Cierra el modal si se hace click en el fondo oscuro
+// Cerrar el modal si se hace clic en el fondo oscuro
 modal.addEventListener("click", function (event) {
   if (event.target === modal) {
     modal.style.display = "none";
   }
-});
-
-/* //EVENTOS
-const selectFilter = document.getElementById("filterHouses");
-selectFilter.addEventListener("change", () => {
-  const result = filterData(dataGot, "family");
-});
- */
-
-// Obtén una referencia al elemento <select> por su ID
-const filterHousesSelect = document.getElementById("filterHouses");
-// Agrega un evento "change" al elemento <select>
-filterHousesSelect.addEventListener("change", function() {
-  // Obtiene el valor seleccionado
-  const selectedHouse = filterHousesSelect.value;
-
-  // Llama a tu función de filtrado (reemplaza con tu lógica)
-  const filteredData = filterData(dataGot, "family", selectedHouse);
-
-  // Realiza alguna acción con los datos filtrados (puedes actualizar el DOM aquí)
-  console.log(filteredData), "family";
 });

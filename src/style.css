@@ -49,9 +49,26 @@ h1 {
   padding: 6px;
   width: 100%;
   background-color: rgba(217, 217, 217, 1);
+  /* display: flex; */
+  justify-content: space-evenly; 
+  align-items: center; 
 }
 
-h2 {
+/* h2, label,
+#filterHouses {
+  text-align: center;
+  font-family: "Gotu", serif;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 8px;
+  width: 12%;
+  margin: 0 5px;
+  background-color: rgba(85, 82, 82, 1);
+} */
+
+ h2, #filterHouses {
   text-align: center;
   font-family: "Gotu", serif;
   color: #fff;
@@ -64,6 +81,33 @@ h2 {
   display: inline-block;
   background-color: rgba(85, 82, 82, 1);
 }
+
+#label[for="filterHouses"] {
+  text-align: center;
+  font-family: "Gotu", serif;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 8px;
+  width: 35%;
+  margin: 0 auto;
+  display: inline-block;
+  background-color: rgba(85, 82, 82, 1);
+}
+ /*{
+  text-align: center;
+  font-family: "Gotu", serif;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 8px;
+  width: 12%;
+  margin: 0 auto;
+  display: inline-block;
+  background-color: rgba(85, 82, 82, 1);
+} */
 
 img {
   border-radius: 3px;

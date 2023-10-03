@@ -3,16 +3,18 @@
 
 export const filterData = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
-    return obj[filterBy] === value;
-  });
+    const normalizedValue = value.toLowerCase();
+    const normalizedDataValue = obj[filterBy].toLowerCase();
 
-  return resultFilter; 
+    return normalizedDataValue.includes(normalizedValue);
   
+    /*return obj[filterBy] === value;*/
+  }); 
+  return resultFilter;  
 };
 
-/* const filteredData = filterData(data, "family");
-console.log(filteredData); */
+  export const sortData = (data, sortBy, sortOrder) => {
+    return 1;
+}; 
 
-export const sortData = (data, sortBy, sortOrder) => {
-  return 1;
-};
+
