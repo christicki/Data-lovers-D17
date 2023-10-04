@@ -4,9 +4,8 @@
 export const filterData = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
     return obj[filterBy].includes(value);
-
-  }); 
-  return resultFilter;  
+  });
+  return resultFilter;
 };
 
 export const filterDataFamily = (data, filterBy, value) => {
@@ -19,8 +18,23 @@ export const filterDataFamily = (data, filterBy, value) => {
   return resultFilter;
 };
 
-  export const sortData = (data, sortBy, sortOrder) => {
-    return 1;
-}; 
-
-
+export const sortData = (data, sortBy, sortOrder) => {
+  if (sortOrder === "A-Z") {
+    // Ordenar de A-Z en orden ascendente
+    return data.sort((a, b) => {
+      if (a[sortBy] < b[sortBy]) return -1;
+      if (a[sortBy] > b[sortBy]) return 1;
+      return 0;
+    });
+  } else if (sortOrder === "Z-A") {
+    // Ordenar de Z-A en orden descendente
+    return data.sort((a, b) => {
+      if (a[sortBy] > b[sortBy]) return -1;
+      if (a[sortBy] < b[sortBy]) return 1;
+      return 0;
+    });
+  } else {
+    // Si sortOrder no es 'asc' o 'desc', devuelve el arreglo sin cambios
+    return data;
+  }
+};

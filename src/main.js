@@ -1,5 +1,5 @@
-import { renderItems } from "./view.js";
 import data from "./data/got/got.js";
+import { renderItems } from "./view.js";
 import { filterData } from "./dataFunctions.js";
 
 const dataGot = data.got;
@@ -7,12 +7,10 @@ const root = document.querySelector("#root");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close");
 const filterHousesSelect = document.getElementById("filterHouses");
+const resetFilter = document.querySelector("#resetFilter"); // para el boton
+const sortDataAlpha = document.querySelector("#sortData"); // para sortData
 const selectedValue = filterHousesSelect.value;
 const selectedAltValue = filterHousesSelect.options[filterHousesSelect.selectedIndex].getAttribute("data-alt-value");
-
-console.log("Valor seleccionado:", selectedValue);
-console.log("Valor alternativo:", selectedAltValue);
-
 
 // Función para renderizar todos los personajes
 const renderAllCharacters = () => {
@@ -47,44 +45,41 @@ filterHousesSelect.addEventListener("change", function () {
   }
 });
 
-// Función para mostrar el modal al hacer clic en las tarjetas de personajes //AGREGAMOS ESTO + linea 45
+// Función para mostrar el modal al hacer clic en las tarjetas de personajes //AGREGAMOS ESTO
 function setupModalEventListeners() {
   const liContainerAll = root.querySelectorAll(".container");
 
-  liContainerAll.forEach((liContainer) => {
-    liContainer.addEventListener("click", function (event) {
-      modal.style.display = "block";
-      const modalContent = document.querySelector(".modal-content");
-      modalContent.innerHTML = "";
-  
-      const character = JSON.parse(localStorage.getItem("idCharacter"));
+liContainerAll.forEach((liContainer) => {
+  liContainer.addEventListener("click", function (event) {
+    modal.style.display = "block";
+    const modalContent = document.querySelector(".modal-content");
+    modalContent.innerHTML = "";
 
-      // Crear y agregar la imagen al contenido del modal
-      const imageElement = document.createElement("img");
-      imageElement.src = character.imageUrl;
-      imageElement.classList.add("modal-image");
-      modalContent.appendChild(imageElement);
+    const character = JSON.parse(localStorage.getItem("idCharacter"));
 
+    // Crear y agregar la imagen al contenido del modal
+    const imageElement = document.createElement("img");
+    imageElement.src = character.imageUrl;
+    imageElement.classList.add("modal-image");
+    modalContent.appendChild(imageElement);
 
-      // Crear un elemento div con itemscope y itemtype para representar una persona
-      const personElement = document.createElement("div");
-      personElement.setAttribute("itemscope", "");
-      personElement.setAttribute("itemtype", "https://schema.org/Person");
+    // Crear un elemento div con itemscope y itemtype para representar una persona
+    const personElement = document.createElement("div");
+    personElement.setAttribute("itemscope", "");
+    personElement.setAttribute("itemtype", "https://schema.org/Person");
 
+    // Agregar las propiedades de la persona utilizando elementos con itemprop
+    personElement.innerHTML = `
+      <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
+      <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
+      <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
+      <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
+      <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
+`;
 
-      // Agregar las propiedades de la persona utilizando elementos con itemprop
-      personElement.innerHTML = `
-        <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
-        <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
-        <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
-        <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
-        <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
-      `;
-
-      modalContent.appendChild(personElement);
-
-    });
+    modalContent.appendChild(personElement);
   });
+});
 }
 
 // Evento para mostrar el modal al hacer clic en las tarjetas de personajes
@@ -103,6 +98,6 @@ closeModalBtn.addEventListener("click", function () {
 // Cerrar el modal si se hace clic en el fondo oscuro
 modal.addEventListener("click", function (event) {
   if (event.target === modal) {
-    modal.style.display = "none";
-  }
+    modal.style.display = "none";
+  }
 });
