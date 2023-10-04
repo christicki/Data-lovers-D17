@@ -79,7 +79,7 @@ h2:hover {
   opacity: 0.9;
 }
 
-#filterHouses {
+#filterHouses, #filterLifeStatus {
   text-align: center;
   font-family: "Gotu", serif;
   font-weight: bold;
@@ -95,6 +95,13 @@ h2:hover {
 }
 
 #filterHouses:hover { 
+  background-color: rgba(162, 159, 159, 1); 
+  border: 1px solid rgba(162, 159, 159, 1);
+  transition: 0.3s;
+  opacity: 0.9;
+}
+
+#filterLifeStatus:hover { 
   background-color: rgba(162, 159, 159, 1); 
   border: 1px solid rgba(162, 159, 159, 1);
   transition: 0.3s;
@@ -129,8 +136,8 @@ img {
 }
 
 .container {
-  list-style: none; /La lista deja de verse/
-  display: inline-block;
+  list-style: none;
+  display:inline-block;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   border-color: black;

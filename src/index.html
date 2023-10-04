@@ -18,7 +18,7 @@
     </header>
     <main>
       <div class="menu" id="myMenu">
-        <h2>PERSONAJES</h2>
+        <!-- <h2>PERSONAJES</h2> -->
         <div>
           <select name="filterHouses" id="filterHouses">
             <option value="">CASAS</option>
@@ -51,14 +51,21 @@
             <option value=""></option>
           </select>
         </div>
+        <div>
+          <select name="filterLifeStatus" id="filterLifeStatus">
+            <option value="">STATUS</option>
+            <option value="">Vivos</option>
+            <option value="">Muertos</option>
+          </select>
+        </div>
       </div>
     </main>
 
     <div>
       <select name="sortData" id="sortData">
         <option value="">ORDENAR ⮃</option>
-        <option value="A-Z">A-Z</option>
-        <option value="Z-A">Z-A</option>
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
       </select>
   
       <button id="resetFilter">LIMPIAR FILTROS</button>
