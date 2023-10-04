@@ -51,37 +51,40 @@ filterHousesSelect.addEventListener("change", function () {
 function setupModalEventListeners() {
   const liContainerAll = root.querySelectorAll(".container");
 
-liContainerAll.forEach((liContainer) => {
-  liContainer.addEventListener("click", function (event) {
-    modal.style.display = "block";
-    const modalContent = document.querySelector(".modal-content");
-    modalContent.innerHTML = "";
+  liContainerAll.forEach((liContainer) => {
+    liContainer.addEventListener("click", function (event) {
+      modal.style.display = "block";
+      const modalContent = document.querySelector(".modal-content");
+      modalContent.innerHTML = "";
+  
+      const character = JSON.parse(localStorage.getItem("idCharacter"));
 
-    const character = JSON.parse(localStorage.getItem("idCharacter"));
+      // Crear y agregar la imagen al contenido del modal
+      const imageElement = document.createElement("img");
+      imageElement.src = character.imageUrl;
+      imageElement.classList.add("modal-image");
+      modalContent.appendChild(imageElement);
 
-    // Crear y agregar la imagen al contenido del modal
-    const imageElement = document.createElement("img");
-    imageElement.src = character.imageUrl;
-    imageElement.classList.add("modal-image");
-    modalContent.appendChild(imageElement);
 
-    // Crear un elemento div con itemscope y itemtype para representar una persona
-    const personElement = document.createElement("div");
-    personElement.setAttribute("itemscope", "");
-    personElement.setAttribute("itemtype", "https://schema.org/Person");
+      // Crear un elemento div con itemscope y itemtype para representar una persona
+      const personElement = document.createElement("div");
+      personElement.setAttribute("itemscope", "");
+      personElement.setAttribute("itemtype", "https://schema.org/Person");
 
-    // Agregar las propiedades de la persona utilizando elementos con itemprop
-    personElement.innerHTML = `
-      <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
-      <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
-      <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
-      <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
-      <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
-`;
 
-    modalContent.appendChild(personElement);
+      // Agregar las propiedades de la persona utilizando elementos con itemprop
+      personElement.innerHTML = `
+        <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
+        <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
+        <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
+        <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
+        <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
+      `;
+
+      modalContent.appendChild(personElement);
+
+    });
   });
-});
 }
 
 // Evento para mostrar el modal al hacer clic en las tarjetas de personajes
