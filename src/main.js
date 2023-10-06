@@ -1,6 +1,6 @@
 import data from "./data/got/got.js";
 import { renderItems } from "./view.js";
-import { filterData } from "./dataFunctions.js";
+import { filterDataFamily } from "./dataFunctions.js";
 import { sortData } from "./dataFunctions.js";
 
 const dataGot = data.got;
@@ -8,33 +8,33 @@ const root = document.querySelector("#root");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close");
 const filterHousesSelect = document.getElementById("filterHouses");
-const sortDataAlpha = document.querySelector("#sortData"); // para sortData
-const resetFilter = document.querySelector("#resetFilter"); // para el boton
-const selectedValue = filterHousesSelect.value;
+const sortDataAlpha = document.querySelector("#sortData");
+const resetFilterButton = document.querySelector("#resetFilter"); //aun no lo usamos
 
-// Función para renderizar todos los personajes
+// Función para renderizar(mostrar) todos los personajes
 const renderAllCharacters = () => {
   root.innerHTML = "";
   root.appendChild(renderItems(dataGot));
   setupModalEventListeners(); //AGREGAMOS ESTO
 };
 
-// Función para filtrar y renderizar los personajes por familia
-const updateCharactersByFamily = (family) => {
+// Función para filtrar y mostrar los personajes por familia(CASAS)
+const updateCharactersByFamily = (family, selectedSortOrder) => {
   if (family === "") {
     renderAllCharacters();
   } else {
-    const filteredData = filterData(dataGot, "family", family);
+    const filteredData = filterDataFamily(dataGot, "family", family);
+    const sortedData = sortData(filteredData, "fullName", selectedSortOrder);
     root.innerHTML = "";
-    root.appendChild(renderItems(filteredData));
-    setupModalEventListeners(); //AGREGAMOS ESTO
+    root.appendChild(renderItems(sortedData)); //se modifico esto
+    setupModalEventListeners(); //AGREGAMOS ESTO --> para que se vean los modales luego de haber filtrado
   }
 };
 
 // Llama a la función para renderizar todos los personajes al cargar la página
 renderAllCharacters();
 
-// Función para manejar el evento de cambio en el selector de casas
+// Función para manejar el evento de cambio en el selector de CASAS
 filterHousesSelect.addEventListener("change", function () {
   const selectedHouse = filterHousesSelect.value;
 
@@ -45,7 +45,7 @@ filterHousesSelect.addEventListener("change", function () {
   }
 });
 
-// Función para mostrar el modal al hacer clic en las tarjetas de personajes //AGREGAMOS ESTO
+// Función para mostrar el modal al hacer click en las tarjetas de personajes
 function setupModalEventListeners() {
   const liContainerAll = root.querySelectorAll(".container");
 
@@ -57,13 +57,13 @@ function setupModalEventListeners() {
 
       const character = JSON.parse(localStorage.getItem("idCharacter"));
 
-      // Crear y agregar la imagen al contenido del modal
+      // Crear y agregar la imagen del personaje al contenido del modal
       const imageElement = document.createElement("img");
       imageElement.src = character.imageUrl;
       imageElement.classList.add("modal-image");
       modalContent.appendChild(imageElement);
 
-      // Crear un elemento div con itemscope y itemtype para representar una persona
+      // Crear un elemento div con itemscope y itemtype para representar una persona (person schema)
       const personElement = document.createElement("div");
       personElement.setAttribute("itemscope", "");
       personElement.setAttribute("itemtype", "https://schema.org/Person");
@@ -81,21 +81,35 @@ function setupModalEventListeners() {
     });
   });
 
-  // Evento para manejar el cambio en el selector de ordenar
+  // Evento para manejar el cambio en el selector de ordenar alfabéticamente
   sortDataAlpha.addEventListener("change", function () {
     const selectedSortOrder = sortDataAlpha.value;
-    // Llama a la función sortData con el valor seleccionado
+    const selectedHouse = filterHousesSelect.value; // Obtén el valor del selector de CASAS
+    // Llama a la función sortData con el valor seleccionado (A-Z || Z-A)
     if (selectedSortOrder === "asc" || selectedSortOrder === "desc") {
       const sortedData = sortData(dataGot, "fullName", selectedSortOrder);
+      console.log("+++", sortedData);
       root.innerHTML = "";
       root.appendChild(renderItems(sortedData));
-      /*     setupModalEventListeners(); // Asegúrate de mantener esto si es necesario
-       */
+      updateCharactersByFamily(selectedHouse, selectedSortOrder);
+      setupModalEventListeners(); //para que se vean los modales luego de haber ordenado
     }
   });
 }
 
-// Cerrar el modal al hacer clic en el botón de cierre
+// Evento para manejar el clic en el botón de reinicio
+resetFilterButton.addEventListener("click", function () {
+  // Restablece el valor del selector de CASAS al value="">CASAS
+  filterHousesSelect.value = "";
+
+  // Restablece el valor del selector de ordenamiento a una cadena vacía para que quede sin preferencia
+  sortDataAlpha.value = "";
+
+  // Llama a la función para mostrar todos los personajes
+  renderAllCharacters();
+});
+
+// Cerrar el modal al hacer clic en el botón de cierre (no funcionando actualmente)
 closeModalBtn.addEventListener("click", function () {
   modal.style.display = "none";
 });

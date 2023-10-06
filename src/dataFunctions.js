@@ -1,6 +1,5 @@
-
 export const example = () => {
-  return 'example';
+  return "example";
 };
 
 export const anotherExample = () => {
@@ -11,23 +10,35 @@ export const filterData = (data, filterBy, value) => {
   return data.filter((character) => character[filterBy] === value);
 };
 
+export const filterDataFamily = (data, filterBy, value) => {
+  const resultFilter = data.filter((obj) => {
+    // Utiliza toLowerCase() para hacer la búsqueda insensible a mayúsculas/minúsculas
+    const fieldValue = obj[filterBy].toLowerCase();
+    const filterValue = value.toLowerCase();
+    return fieldValue.includes(filterValue);
+  });
+  return resultFilter;
+};
+
 export const sortData = (data, sortBy, sortOrder) => {
+  const dataCopy = [...data];
+  console.log(dataCopy);
   if (sortOrder === "asc") {
     // Ordenar de A-Z en orden ascendente
-    return data.sort((a, b) => {
+    return dataCopy.sort((a, b) => {
       if (a[sortBy] < b[sortBy]) return -1;
       if (a[sortBy] > b[sortBy]) return 1;
       return 0;
     });
   } else if (sortOrder === "desc") {
     // Ordenar de Z-A en orden descendente
-    return data.sort((a, b) => {
+    return dataCopy.sort((a, b) => {
       if (a[sortBy] > b[sortBy]) return -1;
       if (a[sortBy] < b[sortBy]) return 1;
       return 0;
     });
   } else {
     // Si sortOrder no es 'asc' o 'desc', devuelve el arreglo sin cambios
-    return data;
+    return dataCopy;
   }
 };

@@ -23,7 +23,9 @@ export const renderItems = (dataGot) => {
 };
 
 // Cuando el usuario hace scroll, se ejecuta myFunction --> ESTUDIAR
-window.onscroll = function() {myFunction()};
+window.onscroll = function () {
+  myFunction();
+};
 
 // Get the header
 let menu = document.getElementById("myMenu");
@@ -38,4 +40,4 @@ function myFunction() {
   } else {
     menu.classList.remove("sticky");
   }
-};
+}
