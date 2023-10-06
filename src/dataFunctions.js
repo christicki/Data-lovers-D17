@@ -21,8 +21,18 @@ export const filterDataFamily = (data, filterBy, value) => {
 };
 
 export const sortData = (data, sortBy, sortOrder) => {
+  console.log(data, sortBy, sortOrder);
   const dataCopy = [...data];
   console.log(dataCopy);
+  // const result = dataCopy.sort((a, b)=>{
+  //   if(a[sortBy]>b[sortBy]){
+  //     return 1
+  //   }
+  //   if(a[sortBy]<b[sortBy]){
+  //     return -1
+  //   }
+  //   return 0
+  // })
   if (sortOrder === "asc") {
     // Ordenar de A-Z en orden ascendente
     return dataCopy.sort((a, b) => {
@@ -41,4 +51,5 @@ export const sortData = (data, sortBy, sortOrder) => {
     // Si sortOrder no es 'asc' o 'desc', devuelve el arreglo sin cambios
     return dataCopy;
   }
+  // return result
 };

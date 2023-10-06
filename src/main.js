@@ -68,7 +68,7 @@ function setupModalEventListeners() {
       personElement.setAttribute("itemscope", "");
       personElement.setAttribute("itemtype", "https://schema.org/Person");
 
-      // Agregar las propiedades de la persona utilizando elementos con itemprop
+      // Agregamos las propiedades de la persona utilizando elementos con itemprop
       personElement.innerHTML = `
       <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
       <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
@@ -80,22 +80,27 @@ function setupModalEventListeners() {
       modalContent.appendChild(personElement);
     });
   });
-
-  // Evento para manejar el cambio en el selector de ordenar alfabéticamente
-  sortDataAlpha.addEventListener("change", function () {
-    const selectedSortOrder = sortDataAlpha.value;
-    const selectedHouse = filterHousesSelect.value; // Obtén el valor del selector de CASAS
-    // Llama a la función sortData con el valor seleccionado (A-Z || Z-A)
-    if (selectedSortOrder === "asc" || selectedSortOrder === "desc") {
-      const sortedData = sortData(dataGot, "fullName", selectedSortOrder);
-      console.log("+++", sortedData);
-      root.innerHTML = "";
-      root.appendChild(renderItems(sortedData));
-      updateCharactersByFamily(selectedHouse, selectedSortOrder);
-      setupModalEventListeners(); //para que se vean los modales luego de haber ordenado
-    }
-  });
 }
+
+ // Evento para manejar el cambio en el selector de ordenar alfabéticamente
+ sortDataAlpha.addEventListener("change", function () {
+  const selectedSortOrder = sortDataAlpha.value;
+  const selectedHouse = filterHousesSelect.value; // Obtén el valor del selector de CASAS
+  // Llamar a la función sortData con el valor seleccionado (A-Z || Z-A)
+  if (!selectedSortOrder === "asc" || !selectedSortOrder === "desc") {
+    renderAllCharacters();
+  }
+  else {
+    const sortedData = sortData(dataGot, "fullName", selectedSortOrder);
+    const filteredData =  updateCharactersByFamily(selectedHouse, selectedSortOrder);
+    console.log("+++result", sortedData);
+    console.log('LISTA: ', renderItems(sortedData));
+    root.innerHTML = " ";
+    root.appendChild(renderItems(sortedData));
+    console.log('ROOT', root);
+    setupModalEventListeners(); //para que se vean los modales luego de haber ordenado
+  }
+});
 
 // Evento para manejar el clic en el botón de reinicio
 resetFilterButton.addEventListener("click", function () {

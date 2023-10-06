@@ -1,6 +1,6 @@
 export const renderItems = (dataGot) => {
   const ul = document.createElement("ul");
-  ul.setAttribute("id", "cards");
+  // ul.setAttribute("id", "cards");
   dataGot.forEach((element) => {
     const newLi = document.createElement("li");
     newLi.setAttribute("class", "container");
@@ -27,15 +27,11 @@ window.onscroll = function () {
   myFunction();
 };
 
-// Get the header
 let menu = document.getElementById("myMenu");
-
-// Get the offset position of the navbar
 let sticky = menu.offsetTop;
 
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function myFunction() {
-  if (window.pageYOffset > sticky) {
+  if (window.scrollY > sticky) {
     menu.classList.add("sticky");
   } else {
     menu.classList.remove("sticky");
