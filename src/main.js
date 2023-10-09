@@ -55,7 +55,7 @@ function setupModalEventListeners() {
   const liContainerAll = root.querySelectorAll(".container");
 
   liContainerAll.forEach((liContainer) => {
-    liContainer.addEventListener("click", function (event) {
+    liContainer.addEventListener("click", function () { //--> eliminado event dentro de parentesis, por test.
       modal.style.display = "block";
       const modalContent = document.querySelector(".modal-content");
       modalContent.innerHTML = "";

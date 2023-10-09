@@ -27,13 +27,13 @@ window.onscroll = function () {
   myFunction();
 };
 
-let menu = document.getElementById("myMenu");
-let sticky = menu.offsetTop;
+const menu = document.getElementById("myMenu"); // --> cambiados let por const (30 y 31)
+const sticky = menu ? menu.offsetTop : 0; //--> revisar si esto se puede cambiar para que no salga error
 
 function myFunction() {
-  if (window.scrollY > sticky) {
+  if (menu && window.scrollY > sticky) {
     menu.classList.add("sticky");
-  } else {
+  } else if (menu) {
     menu.classList.remove("sticky");
   }
 }

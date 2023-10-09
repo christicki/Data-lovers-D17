@@ -9,17 +9,18 @@
     <audio loop autoplay>
       <source src="got-song.mp3" type="audio/mpeg">
     </audio>
-      <h1>
-        <img
-          id="titlePic"
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png"
-        />
-      </h1>
-    </header>
+  <header id="cabeza" class="cabezita">
+    <h1>
+      <img
+        id="titlePic"
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png">
+    </h1>
+  </header>
     <main>
       <div class="menu" id="myMenu">
-        <!-- <h2>PERSONAJES</h2> -->
         <div>
+          <!--       Todas las etiquetas de controles (inputs, selects, radio, etc) tienen <label>
+ --> 
           <select name="filterHouses" id="filterHouses">
             <option value="">CASAS</option>
             <option value="Stark">Stark</option>
@@ -51,7 +52,7 @@
             <option value=""></option>
           </select>
         </div>
-        <div>
+      <div>
           <select name="filterLifeStatus" id="filterLifeStatus">
             <option value="">STATUS</option>
             <option value="">Vivos</option>
@@ -62,7 +63,8 @@
     </main>
 
     <div>
-      <select name="sortData" id="sortData">
+<!--       Todas las etiquetas de controles (inputs, selects, radio, etc) tienen <label>
+ -->   <select name="sortData" id="sortData">
         <option value="">ORDENAR ⮃</option>
         <option value="asc">A-Z</option>
         <option value="desc">Z-A</option>
@@ -78,7 +80,7 @@
       </div>
     </div>
 
-    <script src="main.js" src="data.js" type="module"></script>
+    <script src="main.js" type="module"></script>
   </body>
   <footer>Creado por Chris y Carol</footer>
 </html>
