@@ -2,6 +2,7 @@ import data from "./data/got/got.js";
 import { renderItems } from "./view.js";
 import { filterDataFamily } from "./dataFunctions.js";
 import { sortData } from "./dataFunctions.js";
+import { filterDataLifeStatus } from "./dataFunctions.js";
 
 const dataGot = data.got;
 const root = document.querySelector("#root");
@@ -10,6 +11,7 @@ const closeModalBtn = document.querySelector(".close");
 const filterHousesSelect = document.getElementById("filterHouses");
 const sortDataAlpha = document.querySelector("#sortData");
 const resetFilterButton = document.querySelector("#resetFilter")
+const filterLifeStatusSelect = document.getElementById("filterLifeStatus");
 
 // Variable para almacenar la última selección de filtro
 let lastSelectedHouse = "Todos";
@@ -33,6 +35,21 @@ const updateCharactersByFamily = (family, selectedSortOrder) => {
     setupModalEventListeners();
   }
 };
+// Función para filtrar por LifeStatus (Vivos o muertos)
+filterLifeStatusSelect.addEventListener("change", function () {
+  const selectedLifeStatus = filterLifeStatusSelect.value;
+  const selectedSortOrder = sortDataAlpha.value;
+
+  if (selectedLifeStatus === "") {
+    renderAllCharacters();
+  } else {
+    const filteredData = filterDataLifeStatus(dataGot, selectedLifeStatus);
+    const sortedData = sortData(filteredData, "fullName", selectedSortOrder);
+    root.innerHTML = "";
+    root.appendChild(renderItems(sortedData));
+    setupModalEventListeners();
+  }
+});
 
 // Llama a la función para renderizar todos los personajes al cargar la página
 renderAllCharacters();

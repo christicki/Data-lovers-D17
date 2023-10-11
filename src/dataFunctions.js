@@ -20,6 +20,17 @@ export const filterDataFamily = (data, filterBy, value) => {
   return resultFilter;
 };
 
+export const filterDataLifeStatus = (data, lifeStatus) => {
+  if (lifeStatus === "Vivos") {
+    return data.filter((character) => !character.death);
+  } else if (lifeStatus === "Muertos") {
+    return data.filter((character) => character.death);
+  } else {
+    // Si el estado de vida es diferente de "Vivos" o "Muertos", devuelve todos los personajes.
+    return data;
+  }
+};
+
 export const sortData = (data, sortBy, sortOrder) => {
   const dataCopy = [...data];
   

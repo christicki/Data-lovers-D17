@@ -19,16 +19,10 @@ header {
 }
 
 h1 {
-  font-family: "Game of Thrones", serif;
-  font-size: 70px;
   margin-top: 0;
-  margin-bottom: -20px;
-  letter-spacing: 5px;
-  color: #c0c0c0;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 3px rgba(33, 33, 33, 0.5);
-  background-color: transparent;
+  margin-bottom: 1px;
 }
+
 .menu {
   padding: 10px 16px;
   width: 100%;
@@ -48,7 +42,7 @@ h1 {
 } 
 
 #myMenu {
-  padding: 6px;
+  padding: 20px;
   margin: 0 auto;
   background-color: rgba(217, 217, 217, 1);
   display: flex;
@@ -90,6 +84,7 @@ h2:hover {
   width: 200px;
   margin: 0;
   background-color: rgba(85, 82, 82, 1);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 #filterHouses:hover { 
@@ -106,6 +101,12 @@ h2:hover {
   opacity: 0.9;
 }
 
+label {
+  font-family: "Trajan", serif;
+  font-weight: bold;
+  color: rgba(85, 82, 82, 1);
+}
+
 #resetFilter {
   text-align: center;
   font-family: "Gotu", serif;
@@ -119,6 +120,7 @@ h2:hover {
   margin: 12px;
   display: inline-block;
   background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 #resetFilter:hover { 
@@ -142,6 +144,7 @@ h2:hover {
   margin: 12px;
   display: inline-block;
   background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 #sortData:hover { 
@@ -162,6 +165,7 @@ img {
 .cards {
   margin-top: 15px;
   padding: 20px;
+  font-size: 20px;
 }
 
 .container {
@@ -230,6 +234,7 @@ li {
   border-radius: 5px;
   width: 260px;
   height: 300px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   object-fit: cover;
   align-self: center; /* Alinea la imagen a la izquierda */
 }
@@ -248,7 +253,7 @@ li {
 
 footer {
   color: rgb(0, 0, 0);
-  font-size: 18px;
+  font-size: 14px;
   font-family: "Trajan Pro";
   margin-bottom: 20px;
   padding: 6px;
