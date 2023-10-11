@@ -9,7 +9,7 @@
     <audio loop autoplay>
       <source src="got-song.mp3" type="audio/mpeg">
     </audio>
-  <header id="cabeza" class="cabezita">
+  <header class="cabezita">
     <h1>
       <img
         id="titlePic"
@@ -18,9 +18,14 @@
   </header>
     <main>
       <div class="menu" id="myMenu">
+
+        <select name="sortData" id="sortData">
+          <option value="">ORDENAR ⮃</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+
         <div>
-          <!--       Todas las etiquetas de controles (inputs, selects, radio, etc) tienen <label>
- --> 
           <select name="filterHouses" id="filterHouses">
             <option value="">CASAS</option>
             <option value="Stark">Stark</option>
@@ -52,27 +57,21 @@
             <option value=""></option>
           </select>
         </div>
-      <div>
-          <select name="filterLifeStatus" id="filterLifeStatus">
-            <option value="">STATUS</option>
-            <option value="">Vivos</option>
-            <option value="">Muertos</option>
-          </select>
-        </div>
+          
+            <select name="filterLifeStatus" id="filterLifeStatus">
+              <option value="">STATUS</option>
+              <option value="">Vivos</option>
+              <option value="">Muertos</option>
+            </select>
+            <div>
+                <button id="resetFilter">LIMPIAR FILTROS</button>
+            </div>
+           
+  
       </div>
-    </main>
-
-    <div>
-<!--       Todas las etiquetas de controles (inputs, selects, radio, etc) tienen <label>
- -->   <select name="sortData" id="sortData">
-        <option value="">ORDENAR ⮃</option>
-        <option value="asc">A-Z</option>
-        <option value="desc">Z-A</option>
-      </select>
-  
-      <button id="resetFilter">LIMPIAR FILTROS</button>
     </div>
-  
+  </main>
+      <div>
     <div id="root" class="cards"></div>
     <div class="modal">
       <div class="modal-content">

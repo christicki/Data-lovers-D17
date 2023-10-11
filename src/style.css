@@ -31,15 +31,13 @@ h1 {
 }
 .menu {
   padding: 10px 16px;
-/*   background: #555;
-  color: #f1f1f1; */
   width: 100%;
   display: flex;
   justify-content: space-between; 
   align-items: center;
 }
 
-/* .sticky {
+.sticky {
   position: fixed;
   top: 0;
   width: 100%
@@ -47,7 +45,7 @@ h1 {
 
 .sticky + .content {
   padding-top: 102px;
-} */
+} 
 
 #myMenu {
   padding: 6px;
@@ -56,6 +54,7 @@ h1 {
   display: flex;
   justify-content: space-evenly; 
   align-items: center;
+  opacity: 0.9;
 } 
 
  h2 {
@@ -107,7 +106,30 @@ h2:hover {
   opacity: 0.9;
 }
 
-#resetFilter, #sortData {
+#resetFilter {
+  text-align: center;
+  font-family: "Gotu", serif;
+  font-weight: bold;
+  color: rgba(85, 82, 82, 1);
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 8px;
+  width: 90%;
+  margin: 12px;
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+}
+
+#resetFilter:hover { 
+  background-color: rgba(162, 159, 159, 1); 
+  color: black; 
+  border: 1px solid rgba(162, 159, 159, 1);
+  transition: 0.3s;
+  opacity: 0.9;
+}
+
+#sortData {
   text-align: center;
   font-family: "Gotu", serif;
   font-weight: bold;
@@ -120,6 +142,14 @@ h2:hover {
   margin: 12px;
   display: inline-block;
   background-color: rgb(255, 255, 255);
+}
+
+#sortData:hover { 
+  background-color: rgba(162, 159, 159, 1); 
+  color: black; 
+  border: 1px solid rgba(162, 159, 159, 1);
+  transition: 0.3s;
+  opacity: 0.9;
 }
  
 img {
@@ -148,9 +178,10 @@ img {
   font-family: "Trajan Pro", serif;
   font-size: 80%; */
   width: 15%; /* Ancho para mostrar 4 tarjetas en una fila en pantallas grandes */
-  height: 300px;
+  height: 400px;
   font-family: "Trajan Pro", serif;
   font-size: 80%;
+  min-width: 250px;
 }
 
 .container:hover { 
@@ -158,6 +189,10 @@ img {
   border: 1px solid rgba(85, 82, 82, 1);
   transition: 0.3s;
   opacity: 1;
+}
+
+li {
+  list-style: none;
 }
 
 .modal {
@@ -212,9 +247,13 @@ img {
 }
 
 footer {
-  color: white;
-  font-size: 15px;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
   font-family: "Trajan Pro";
+  margin-bottom: 20px;
+  padding: 6px;
+  background-color: rgba(217, 217, 217, 1);
+  align-items: center;
 }
 
 @media screen and (max-width: 412px) {

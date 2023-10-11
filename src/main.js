@@ -72,11 +72,11 @@ function setupModalEventListeners() {
       personElement.setAttribute("itemtype", "https://schema.org/Person");
 
       personElement.innerHTML = `
-      <span itemprop="familyName">Nombre: <strong>${character.fullName}</strong></span><br>
-      <span itemprop="memberOf">Familia: <strong>${character.family}</strong></span><br>
-      <span itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></span><br>
-      <span itemprop="deathDate">Muerte: <strong>${character.death}</strong></span><br>
-      <span itemprop="jobTitle">Título: <strong>"${character.title}"</strong></span><br>
+      <li itemprop="familyName">Nombre: <strong>${character.fullName}</strong></li><br>
+      <li itemprop="memberOf">Familia: <strong>${character.family}</strong></li><br>
+      <li itemprop="birthDate">Nacimiento: <strong>${character.born}</strong></li><br>
+      <li itemprop="deathDate">Muerte: <strong>${character.death}</strong></li><br>
+      <li itemprop="jobTitle">Título: <strong>"${character.title}"</strong></li><br>
     `;
 
       modalContent.appendChild(personElement);
