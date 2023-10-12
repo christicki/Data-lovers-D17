@@ -3,6 +3,7 @@ import { renderItems } from "./view.js";
 import { filterDataFamily } from "./dataFunctions.js";
 import { sortData } from "./dataFunctions.js";
 import { filterDataLifeStatus } from "./dataFunctions.js";
+import { calcularEdadPromedio } from "./dataFunctions.js";
 
 const dataGot = data.got;
 const root = document.querySelector("#root");
@@ -144,5 +145,27 @@ closeModalBtn.addEventListener("click", function () {
 modal.addEventListener("click", function (event) {
   if (event.target === modal) {
     modal.style.display = "none";
+  }
+});
+
+// Actualiza la estadística de la edad promedio
+function actualizarEdadPromedio(data) {
+  const edadPromedio = calcularEdadPromedio(dataGot);
+  console.log(edadPromedio);
+  document.getElementById("edadPromedio").textContent = edadPromedio;
+}
+
+// Agrega el evento para el selector de estado de vida
+filterLifeStatusSelect.addEventListener("change", function () {
+  const selectedLifeStatus = filterLifeStatusSelect.value;
+
+  if (selectedLifeStatus === "") {
+    renderAllCharacters();
+  } else {
+    const filteredData = filterDataStatus(dataGot, selectedLifeStatus);
+    root.innerHTML = "";
+    root.appendChild(renderItems(filteredData));
+    setupModalEventListeners();
+    actualizarEdadPromedio(filteredData); // Actualiza la estadística
   }
 });

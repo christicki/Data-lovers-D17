@@ -54,3 +54,39 @@ export const sortData = (data, sortBy, sortOrder) => {
   }
   // return result
 };
+
+function obtenerParteNumerica(propiedad) {
+  // Utiliza una expresión regular para encontrar la parte numérica
+  const matches = propiedad.match(/\d+/);
+  if (matches) {
+    // Si se encontraron coincidencias, toma la primera como la parte numérica
+    return parseInt(matches[0]);
+  } else {
+    // Si no se encontraron coincidencias numéricas, devuelve NaN
+    return NaN;
+  }
+}
+
+export function calcularEdadPromedio(data) {
+  const charactersConEdad = data.filter((character) => {
+   // Verifica que tanto born como death tengan valores numéricos
+   const nacimientoNumerico = obtenerParteNumerica(character.born);
+   const muerteNumerica = obtenerParteNumerica(character.death);
+   return !isNaN(nacimientoNumerico) && !isNaN(muerteNumerica);
+  });
+
+
+  if (charactersConEdad.length === 0) {
+    return "Edad promedio no disponible";
+  }
+
+  const edades = charactersConEdad.map((character) => {
+    const nacimiento = parseInt(character.born);
+    const muerte = parseInt(character.death);
+    return muerte - nacimiento;
+  });
+
+  const sumaEdades = edades.reduce((acumulador, edad) => acumulador + edad, 0);
+  const edadPromedio = sumaEdades / charactersConEdad.length;
+  return `Edad promedio: ${edadPromedio.toFixed(2)} años`;
+}
