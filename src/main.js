@@ -17,7 +17,9 @@ const filterHousesSelect = document.getElementById("filterHouses");
 const sortDataAlpha = document.querySelector("#sortData");
 const resetFilterButton = document.querySelector("#resetFilter");
 const filterLifeStatusSelect = document.getElementById("filterLifeStatus");
+const resultDiv = document.getElementById("resultSurvivorsDiv");
 const resultElement = document.getElementById("resultSurvivors");
+
 
 // Variable para almacenar la última selección de filtro
 let lastSelectedHouse = "Todos";
@@ -46,8 +48,8 @@ const updateCharactersByFamily = (family, selectedSortOrder) => {
     // Llama a la función para mostrar los sobrevivientes
     survivors = showSurvivorsByHouse(sortedData);
     // Muestra el resultado en la interfaz
-    resultElement.textContent = `En esta casa han sobrevivido ${survivors} personajes.`;
-    resultElement.style.display = "block";
+    resultElement.textContent = `En esta casa han sobrevivido ⪼${survivors}⪻ personajes.`;
+    resultDiv.style.display = "block";
   }
 };
 // Función para filtrar por LifeStatus (Vivos o muertos)
@@ -150,13 +152,14 @@ resetFilterButton.addEventListener("click", function () {
   filterHousesSelect.value = "";
   sortDataAlpha.value = "";
   lastSelectedHouse = "Todos"; // Restablece la última selección de filtro
+  resultDiv.style.display = "none";
 
   renderAllCharacters();
 });
 
 // Cerrar el modal al hacer clic en el botón de cierre
 closeModalBtn.addEventListener("click", function () {
-  modal.style.display = "none";
+  closeModalBtn.style.display = "none";
 });
 
 // Cerrar el modal si se hace clic en el fondo oscuro

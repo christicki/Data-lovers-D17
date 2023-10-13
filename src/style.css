@@ -163,8 +163,18 @@ img {
 }
 
 #resultSurvivorsDiv {
-  color: #fff;
+  text-align: center;
+  background-color: rgb(162, 159, 159, 1);
+  display: flex;
+  width: 40%;
+  padding: 10px; 
+  border-radius: 10px;
+  margin: 30px auto 0;
+  align-items: center;
+  color: #000000;
   font-size: 18px;
+  font-family: "Trajan Pro";
+  font-weight: bold;
 }
 
 .cards {
@@ -202,6 +212,18 @@ img {
 
 li {
   list-style: none;
+}
+
+.close {
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 28px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color:#000000;
 }
 
 .modal {
@@ -242,18 +264,6 @@ li {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   object-fit: cover;
   align-self: center; /* Alinea la imagen a la izquierda */
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 28px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
 }
 
 footer {
