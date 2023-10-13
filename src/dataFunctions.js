@@ -48,14 +48,11 @@ export const sortData = (data, sortBy, sortOrder) => {
 };
 
 //Estadistica de personajes que han sobrevivido por casa
-export function showSurvivorsByHouse(data, selectedHouse) {
-  const charactersOfHouse = data.filter(
-    (character) => character.family === selectedHouse
-  );
-
+export function showSurvivorsByHouse(data) {
+  
   let survivors = 0;
 
-  charactersOfHouse.forEach((character) => {
+  data.forEach((character) => {
     if (!character.death) {
       survivors++;
     }

@@ -44,7 +44,7 @@ const updateCharactersByFamily = (family, selectedSortOrder) => {
     setupModalEventListeners();
 
     // Llama a la función para mostrar los sobrevivientes
-    survivors = showSurvivorsByHouse(sortedData, family);
+    survivors = showSurvivorsByHouse(sortedData);
     // Muestra el resultado en la interfaz
     resultElement.textContent = `En esta casa han sobrevivido ${survivors} personajes.`;
     resultElement.style.display = "block";
