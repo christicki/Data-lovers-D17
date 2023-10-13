@@ -1,6 +1,6 @@
 export const renderItems = (dataGot) => {
   const ul = document.createElement("ul");
-  // ul.setAttribute("id", "cards");
+  ul.setAttribute("id", "cards");
   dataGot.forEach((element) => {
     const newLi = document.createElement("li");
     newLi.setAttribute("class", "container");
@@ -22,13 +22,13 @@ export const renderItems = (dataGot) => {
   return ul;
 };
 
-// Cuando el usuario hace scroll, se ejecuta myFunction --> ESTUDIAR
+// Cuando el usuario hace scroll, se ejecuta myFunction
 window.onscroll = function () {
   myFunction();
 };
 
-const menu = document.getElementById("myMenu"); // --> cambiados let por const (30 y 31)
-const sticky = menu ? menu.offsetTop : 0; //--> revisar si esto se puede cambiar para que no salga error
+const menu = document.getElementById("myMenu");
+const sticky = menu ? menu.offsetTop : 0; 
 
 function myFunction() {
   if (menu && window.scrollY > sticky) {

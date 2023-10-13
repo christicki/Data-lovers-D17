@@ -3,7 +3,11 @@ import { renderItems } from "./view.js";
 import { filterDataFamily } from "./dataFunctions.js";
 import { sortData } from "./dataFunctions.js";
 import { filterDataLifeStatus } from "./dataFunctions.js";
-import { calcularEdadPromedio } from "./dataFunctions.js";
+import { showSurvivorsByHouse } from "./dataFunctions.js";
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Aquí puedes poner tu código para acceder a los elementos del DOM
+});
 
 const dataGot = data.got;
 const root = document.querySelector("#root");
@@ -11,8 +15,9 @@ const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close");
 const filterHousesSelect = document.getElementById("filterHouses");
 const sortDataAlpha = document.querySelector("#sortData");
-const resetFilterButton = document.querySelector("#resetFilter")
+const resetFilterButton = document.querySelector("#resetFilter");
 const filterLifeStatusSelect = document.getElementById("filterLifeStatus");
+const resultElement = document.getElementById("resultSurvivors");
 
 // Variable para almacenar la última selección de filtro
 let lastSelectedHouse = "Todos";
@@ -24,6 +29,9 @@ const renderAllCharacters = () => {
   setupModalEventListeners();
 };
 
+// Restablece la variable survivors al cargar la página
+let survivors = 0;
+
 // Función para filtrar y mostrar los personajes por familia (CASAS)
 const updateCharactersByFamily = (family, selectedSortOrder) => {
   if (family === "") {
@@ -34,6 +42,12 @@ const updateCharactersByFamily = (family, selectedSortOrder) => {
     root.innerHTML = "";
     root.appendChild(renderItems(sortedData));
     setupModalEventListeners();
+
+    // Llama a la función para mostrar los sobrevivientes
+    survivors = showSurvivorsByHouse(sortedData, family);
+    // Muestra el resultado en la interfaz
+    resultElement.textContent = `En esta casa han sobrevivido ${survivors} personajes.`;
+    resultElement.style.display = "block";
   }
 };
 // Función para filtrar por LifeStatus (Vivos o muertos)
@@ -54,6 +68,7 @@ filterLifeStatusSelect.addEventListener("change", function () {
 
 // Llama a la función para renderizar todos los personajes al cargar la página
 renderAllCharacters();
+
 // Función para manejar el evento de cambio en el selector de CASAS
 filterHousesSelect.addEventListener("change", function () {
   const selectedHouse = filterHousesSelect.value;
@@ -63,6 +78,8 @@ filterHousesSelect.addEventListener("change", function () {
 
   if (selectedHouse === "Todos") {
     renderAllCharacters();
+    survivors = 0; // Restablece la variable a cero
+    resultElement.style.display = "none"; // Oculta el resultado en la interfaz
   } else {
     updateCharactersByFamily(selectedHouse, selectedSortOrder);
   }
@@ -73,7 +90,8 @@ function setupModalEventListeners() {
   const liContainerAll = root.querySelectorAll(".container");
 
   liContainerAll.forEach((liContainer) => {
-    liContainer.addEventListener("click", function () { //--> eliminado event dentro de parentesis, por test.
+    liContainer.addEventListener("click", function () {
+      //--> eliminado event dentro de parentesis, por test.
       modal.style.display = "block";
       const modalContent = document.querySelector(".modal-content");
       modalContent.innerHTML = "";
@@ -148,13 +166,6 @@ modal.addEventListener("click", function (event) {
   }
 });
 
-// Actualiza la estadística de la edad promedio
-function actualizarEdadPromedio(data) {
-  const edadPromedio = calcularEdadPromedio(dataGot);
-  console.log(edadPromedio);
-  document.getElementById("edadPromedio").textContent = edadPromedio;
-}
-
 // Agrega el evento para el selector de estado de vida
 filterLifeStatusSelect.addEventListener("change", function () {
   const selectedLifeStatus = filterLifeStatusSelect.value;
@@ -162,10 +173,9 @@ filterLifeStatusSelect.addEventListener("change", function () {
   if (selectedLifeStatus === "") {
     renderAllCharacters();
   } else {
-    const filteredData = filterDataStatus(dataGot, selectedLifeStatus);
+    const filteredData = filterDataLifeStatus(dataGot, selectedLifeStatus);
     root.innerHTML = "";
     root.appendChild(renderItems(filteredData));
     setupModalEventListeners();
-    actualizarEdadPromedio(filteredData); // Actualiza la estadística
   }
 });

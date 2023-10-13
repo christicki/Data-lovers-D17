@@ -1,11 +1,3 @@
-export const example = () => {
-  return "example";
-};
-
-export const anotherExample = () => {
-  return [];
-};
-
 export const filterData = (data, filterBy, value) => {
   return data.filter((character) => character[filterBy] === value);
 };
@@ -33,7 +25,7 @@ export const filterDataLifeStatus = (data, lifeStatus) => {
 
 export const sortData = (data, sortBy, sortOrder) => {
   const dataCopy = [...data];
-  
+
   if (sortOrder === "asc") {
     // Ordenar de A-Z en orden ascendente
     return dataCopy.sort((a, b) => {
@@ -55,38 +47,20 @@ export const sortData = (data, sortBy, sortOrder) => {
   // return result
 };
 
-function obtenerParteNumerica(propiedad) {
-  // Utiliza una expresión regular para encontrar la parte numérica
-  const matches = propiedad.match(/\d+/);
-  if (matches) {
-    // Si se encontraron coincidencias, toma la primera como la parte numérica
-    return parseInt(matches[0]);
-  } else {
-    // Si no se encontraron coincidencias numéricas, devuelve NaN
-    return NaN;
-  }
-}
+//Estadistica de personajes que han sobrevivido por casa
+export function showSurvivorsByHouse(data, selectedHouse) {
+  const charactersOfHouse = data.filter(
+    (character) => character.family === selectedHouse
+  );
 
-export function calcularEdadPromedio(data) {
-  const charactersConEdad = data.filter((character) => {
-   // Verifica que tanto born como death tengan valores numéricos
-   const nacimientoNumerico = obtenerParteNumerica(character.born);
-   const muerteNumerica = obtenerParteNumerica(character.death);
-   return !isNaN(nacimientoNumerico) && !isNaN(muerteNumerica);
+  let survivors = 0;
+
+  charactersOfHouse.forEach((character) => {
+    if (!character.death) {
+      survivors++;
+    }
   });
+  console.log(survivors);
 
-
-  if (charactersConEdad.length === 0) {
-    return "Edad promedio no disponible";
-  }
-
-  const edades = charactersConEdad.map((character) => {
-    const nacimiento = parseInt(character.born);
-    const muerte = parseInt(character.death);
-    return muerte - nacimiento;
-  });
-
-  const sumaEdades = edades.reduce((acumulador, edad) => acumulador + edad, 0);
-  const edadPromedio = sumaEdades / charactersConEdad.length;
-  return `Edad promedio: ${edadPromedio.toFixed(2)} años`;
+  return survivors; 
 }

@@ -162,6 +162,11 @@ img {
   object-fit: cover;
 }
 
+#resultSurvivorsDiv {
+  color: #fff;
+  font-size: 18px;
+}
+
 .cards {
   margin-top: 15px;
   padding: 20px;
