@@ -17,14 +17,14 @@
           src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png">
       </h1>
     </header>
-    <div id="bienvenida">
       <main>
-        <!-- bienvenida -->
-    <p class="welcoming-text">Bienvenida a Data Lovers</p>
-    <p class="welcoming-text1">Haz clic en el botón de inicio para explorar más.</p>
-    <button id="starting-button" class="welcoming-button">Iniciar</button>
+        <div id="bienvenida">
+          <!-- bienvenida -->
+            <p class="welcoming-text">¡Bienvenida a Data Lovers!</p>
+            <p class="welcoming-text1">Haz clic en el botón para explorar más:</p>
+            <button id="starting-button" class="welcoming-button">¡Iniciar!</button>
+        </div>
       </main>
-    </div>
 
   <!-- Resto del contenido -->
   <div id="contenido" style="display: none;">
@@ -68,18 +68,19 @@
             <option value=""></option>
           </select>
         </div>
-            <label>⪻ FILTRAR POR ⪼</label>
+
+            <label>⪻   FILTRAR POR   ⪼</label>
             <select name="filterLifeStatus" id="filterLifeStatus">
               <option value="">STATUS</option>
               <option value="Vivos">Vivos</option>
               <option value="Muertos">Muertos</option>
             </select>
+
             <div>
                 <button id="resetFilter">LIMPIAR FILTROS</button>
             </div>
       </div>
-  </main>
-
+  
   <div id="resultSurvivorsDiv" style="display: none;">
     <span id="resultSurvivors"></span>
   </div>
@@ -90,6 +91,7 @@
         <span class="close" id="closeButton">&times;</span>
       </div>
     </div>
+  </div>
 
     <script src="main.js" type="module"></script>
   </body>

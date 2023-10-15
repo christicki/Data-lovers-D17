@@ -1,6 +1,6 @@
-export const filterData = (data, filterBy, value) => {
+/* export const filterData = (data, filterBy, value) => {
   return data.filter((character) => character[filterBy] === value);
-};
+}; */
 
 export const filterDataFamily = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
@@ -57,7 +57,6 @@ export function showSurvivorsByHouse(data) {
       survivors++;
     }
   });
-  console.log(survivors);
-
+  
   return survivors; 
 }
