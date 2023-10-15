@@ -6,17 +6,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <audio loop autoplay>
+    <audio loop autoplay volume="0.5">
       <source src="got-song.mp3" type="audio/mpeg">
     </audio>
-  <header class="cabezita">
-    <h1>
-      <img
-        id="titlePic"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png">
-    </h1>
-  </header>
-    <main>
+    <header class="cabezita">
+      <!-- Título "Game of Thrones" en el encabezado -->
+      <h1>
+        <img
+          id="titlePic"
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png">
+      </h1>
+    </header>
+    <div id="bienvenida">
+      <main>
+        <!-- bienvenida -->
+    <p class="welcoming-text">Bienvenida a Data Lovers</p>
+    <p class="welcoming-text1">Haz clic en el botón de inicio para explorar más.</p>
+    <button id="starting-button" class="welcoming-button">Iniciar</button>
+      </main>
+    </div>
+
+  <!-- Resto del contenido -->
+  <div id="contenido" style="display: none;">
       <div class="menu" id="myMenu">
 
         <select name="sortData" id="sortData">
