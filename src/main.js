@@ -6,7 +6,20 @@ import { filterDataLifeStatus } from "./dataFunctions.js";
 import { showSurvivorsByHouse } from "./dataFunctions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Aquí puedes poner tu código para acceder a los elementos del DOM
+  // Variable para realizar un seguimiento del estado
+  let isWelcomeShown = true;
+
+  // Función para mostrar el contenido principal al hacer clic en el botón "Iniciar"
+  document.getElementById("starting-button").addEventListener("click", function () {
+    if (isWelcomeShown) {
+      // Oculta la sección de bienvenida
+      document.getElementById("bienvenida").style.display = "none";
+      isWelcomeShown = false; // Cambia el estado para evitar mostrar la bienvenida nuevamente
+    }
+
+    // Muestra la sección de contenido principal
+    document.getElementById("contenido").style.display = "block";
+  });
 });
 
 const dataGot = data.got;
@@ -21,8 +34,10 @@ const resultDiv = document.getElementById("resultSurvivorsDiv");
 const resultElement = document.getElementById("resultSurvivors");
 
 
+ 
 // Variable para almacenar la última selección de filtro
 let lastSelectedHouse = "Todos";
+
 
 // Función para renderizar(mostrar) todos los personajes
 const renderAllCharacters = () => {
