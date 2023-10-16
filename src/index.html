@@ -9,7 +9,7 @@
     <audio loop autoplay volume="0.5">
       <source src="got-song.mp3" type="audio/mpeg">
     </audio>
-    <header class="cabezita">
+    <header>
       <!-- Título "Game of Thrones" en el encabezado -->
       <h1>
         <img
@@ -30,6 +30,7 @@
   <div id="contenido" style="display: none;">
       <div class="menu" id="myMenu">
 
+        <label for="sortData"></label>
         <select name="sortData" id="sortData" data-testid="select-sort">
           <option value="">ORDENAR ⮃</option>
           <option value="asc">A-Z</option>
@@ -37,6 +38,7 @@
         </select>
 
         <div>
+          <label for="filterHouses"></label>
           <select name="filterHouses" id="filterHouses" data-testid="select-filter">
             <option value="">CASAS</option>
             <option value="Stark">Stark</option>
@@ -69,7 +71,7 @@
           </select>
         </div>
 
-            <label>⪻   FILTRAR POR   ⪼</label>
+            <label for="filterLifeStatus">⪻   FILTRAR POR   ⪼</label>
             <select name="filterLifeStatus" id="filterLifeStatus">
               <option value="">STATUS</option>
               <option value="Vivos">Vivos</option>

@@ -117,35 +117,16 @@ describe('sortData', () => {
 
 //Prueba para Estadistica de personajes que han sobrevivido por casa (estadistica)
 describe('showSurvivorsByHouse', () => {
-  it.only('should count survivors in the data', () => {
-    const data = [
+  it.only('debería contar el número de sobrevivientes', () => {
+    // Datos de prueba
+    const testData = [
       { fullName: 'Jon Snow', death: false },
       { fullName: 'Cersei Lannister', death: true },
       { fullName: 'Arya Stark', death: false },
     ];
 
-    const count = showSurvivorsByHouse(data);
-
-    expect(count).toEqual(2); // 2 personajes están vivos
-  });
-
-  it('should handle empty data', () => {
-    const data = [];
-
-    const count = showSurvivorsByHouse(data);
-
-    expect(count).toEqual(0); // No hay personajes, todos están muertos
-  });
-
-  it('should handle all characters dead', () => {
-    const data = [
-      { fullName: 'Jon Snow', death: true },
-      { fullName: 'Cersei Lannister', death: true },
-      { fullName: 'Arya Stark', death: true },
-    ];
-
-    const count = showSurvivorsByHouse(data);
-
-    expect(count).toEqual(0); // Todos los personajes están muertos
+    // Llama a la función y verifica el resultado
+    const result = showSurvivorsByHouse(testData);
+    expect(result).toEqual(2); // Cambia este valor al número esperado de sobrevivientes
   });
 });

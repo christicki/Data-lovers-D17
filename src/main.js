@@ -5,9 +5,9 @@ import { sortData } from "./dataFunctions.js";
 import { filterDataLifeStatus } from "./dataFunctions.js";
 import { showSurvivorsByHouse } from "./dataFunctions.js";
 // Exporta la función sin cambios
-export function handleStartingButtonClick() {
+/* export function handleStartingButtonClick() { */
   // Tu lógica aquí
-}
+/* } */
 document.addEventListener("DOMContentLoaded", function () {
   // Variable para realizar un seguimiento del estado
   let isWelcomeShown = true;

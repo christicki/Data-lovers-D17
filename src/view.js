@@ -4,6 +4,8 @@ export const renderItems = (dataGot) => {
   dataGot.forEach((element) => {
     const newLi = document.createElement("li");
     newLi.setAttribute("class", "container");
+    newLi.setAttribute("itemtype", "got");
+    newLi.setAttribute("itemscope", "");
 
     const imagen = document.createElement("img");
     imagen.setAttribute("src", element.imageUrl);
@@ -22,13 +24,13 @@ export const renderItems = (dataGot) => {
   return ul;
 };
 
-// Cuando el usuario hace scroll, se ejecuta myFunction
+/* // Cuando el usuario hace scroll, se ejecuta myFunction
 window.onscroll = function () {
   myFunction();
 };
 
 const menu = document.getElementById("myMenu");
-const sticky = menu ? menu.offsetTop : 0; 
+const sticky = menu ? menu.offsetTop : 0;
 
 function myFunction() {
   if (menu && window.scrollY > sticky) {
@@ -37,3 +39,4 @@ function myFunction() {
     menu.classList.remove("sticky");
   }
 }
+ */

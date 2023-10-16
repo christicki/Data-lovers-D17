@@ -1,10 +1,5 @@
-/* export const filterData = (data, filterBy, value) => {
-  return data.filter((character) => character[filterBy] === value);
-}; */
-
 export const filterDataFamily = (data, filterBy, value) => {
   const resultFilter = data.filter((obj) => {
-    // Utiliza toLowerCase() para hacer la búsqueda insensible a mayúsculas/minúsculas
     const fieldValue = obj[filterBy].toLowerCase();
     const filterValue = value.toLowerCase();
     return fieldValue.includes(filterValue);
@@ -18,7 +13,6 @@ export const filterDataLifeStatus = (data, lifeStatus) => {
   } else if (lifeStatus === "Muertos") {
     return data.filter((character) => character.death);
   } else {
-    // Si el estado de vida es diferente de "Vivos" o "Muertos", devuelve todos los personajes.
     return data;
   }
 };
@@ -44,19 +38,15 @@ export const sortData = (data, sortBy, sortOrder) => {
     // Si sortOrder no es 'asc' o 'desc', devuelve el arreglo sin cambios
     return dataCopy;
   }
-  // return result
 };
 
 //Estadistica de personajes que han sobrevivido por casa
 export function showSurvivorsByHouse(data) {
-  
-  let survivors = 0;
+  // Utiliza el método .map() para crear un nuevo array con booleanos que indiquen si cada personaje está vivo o no
+  const survivorsArray = data.map((character) => !character.death);
 
-  data.forEach((character) => {
-    if (!character.death) {
-      survivors++;
-    }
-  });
-  
-  return survivors; 
+  // Utiliza el método .reduce() para contar el número de sobrevivientes (elementos con valor true en el array)
+  const survivors = survivorsArray.reduce((count, isSurvivor) => count + (isSurvivor ? 1 : 0), 0);
+
+  return survivors;
 }
