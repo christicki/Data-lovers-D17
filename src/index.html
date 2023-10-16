@@ -30,14 +30,14 @@
   <div id="contenido" style="display: none;">
       <div class="menu" id="myMenu">
 
-        <select name="sortData" id="sortData">
+        <select name="sortData" id="sortData" data-testid="select-sort">
           <option value="">ORDENAR ⮃</option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </select>
 
         <div>
-          <select name="filterHouses" id="filterHouses">
+          <select name="filterHouses" id="filterHouses" data-testid="select-filter">
             <option value="">CASAS</option>
             <option value="Stark">Stark</option>
             <option value="Baratheon">Baratheon</option>
@@ -77,7 +77,7 @@
             </select>
 
             <div>
-                <button id="resetFilter">LIMPIAR FILTROS</button>
+                <button id="resetFilter" data-testid="button-clear">LIMPIAR FILTROS</button>
             </div>
       </div>
   
