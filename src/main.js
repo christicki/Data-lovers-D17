@@ -4,22 +4,27 @@ import { filterDataFamily } from "./dataFunctions.js";
 import { sortData } from "./dataFunctions.js";
 import { filterDataLifeStatus } from "./dataFunctions.js";
 import { showSurvivorsByHouse } from "./dataFunctions.js";
-
+// Exporta la función sin cambios
+export function handleStartingButtonClick() {
+  // Tu lógica aquí
+}
 document.addEventListener("DOMContentLoaded", function () {
   // Variable para realizar un seguimiento del estado
   let isWelcomeShown = true;
 
   // Función para mostrar el contenido principal al hacer clic en el botón "Iniciar"
-  document.getElementById("starting-button").addEventListener("click", function () {
-    if (isWelcomeShown) {
-      // Oculta la sección de bienvenida
-      document.getElementById("bienvenida").style.display = "none";
-      isWelcomeShown = false; // Cambia el estado para evitar mostrar la bienvenida nuevamente
-    }
+  document
+    .querySelector("#starting-button")
+    .addEventListener("click", function () {
+      if (isWelcomeShown) {
+        // Oculta la sección de bienvenida
+        document.querySelector("#bienvenida").style.display = "none";
+        isWelcomeShown = false; // Cambia el estado para evitar mostrar la bienvenida nuevamente
+      }
 
-    // Muestra la sección de contenido principal
-    document.getElementById("contenido").style.display = "block";
-  });
+      // Muestra la sección de contenido principal
+      document.querySelector("#contenido").style.display = "block";
+    });
 });
 
 const dataGot = data.got;
@@ -33,11 +38,8 @@ const filterLifeStatusSelect = document.getElementById("filterLifeStatus");
 const resultDiv = document.getElementById("resultSurvivorsDiv");
 const resultElement = document.getElementById("resultSurvivors");
 
-
- 
 // Variable para almacenar la última selección de filtro
 let lastSelectedHouse = "Todos";
-
 
 // Función para renderizar(mostrar) todos los personajes
 const renderAllCharacters = () => {
