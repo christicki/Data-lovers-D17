@@ -24,7 +24,6 @@ export const renderItems = (dataGot) => {
   return ul;
 };
 
- // Cuando el usuario hace scroll, se ejecuta myFunction
 window.onscroll = function () {
   myFunction();
 };
@@ -39,4 +38,3 @@ function myFunction() {
     menu.classList.remove("sticky");
   }
 }
- 
