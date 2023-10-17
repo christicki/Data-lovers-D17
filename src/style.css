@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin-left:-40px;
   padding: 0;
   align-items: center;
   text-align: center;
@@ -76,7 +76,7 @@ label {
 #myMenu {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 20px;
-  margin: auto;
+  margin-left:11%;
   border-radius: 50px;
   width: 80%;
   display: flex;
@@ -113,10 +113,13 @@ h3 {
   font-family: "Trajan";
   font-weight: lighter;
   width: 300px;
-  margin: auto;
+  margin:auto;
   border-radius: 10px;
   background-color: rgba(162, 159, 159, 1);
   color: rgb(39, 39, 39);
+  text-align: center;
+  margin-left:5%;
+  margin-right:5%;
 }
 
 #filterHouses {
